@@ -1,0 +1,207 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="user-profile">
+      <img src="/assets/user-avatar.jpg" alt="User Avatar" class="avatar">
+      <div class="user-info">
+        <h3>Wildan</h3>
+        <p>Creative Director</p>
+      </div>
+    </div>
+    
+    <div class="search-bar">
+      <input type="text" placeholder="Search" class="search-input">
+    </div>
+    
+    <nav class="navigation">
+      <a href="#" class="nav-item active">
+        <i class="icon-dashboard"></i>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item">
+        <i class="icon-analytics"></i>
+        Analytics
+      </a>
+      
+      <div class="nav-section">
+        <h4>ACCOUNT</h4>
+        <a href="#" class="nav-item">
+          <i class="icon-account"></i>
+          Account
+        </a>
+        <a href="#" class="nav-item">
+          <i class="icon-publishing"></i>
+          My Publishing
+        </a>
+        <a href="#" class="nav-item">
+          <i class="icon-products"></i>
+          Products
+        </a>
+        <a href="#" class="nav-item">
+          <i class="icon-orders"></i>
+          Orders
+        </a>
+        <a href="#" class="nav-item">
+          <i class="icon-more"></i>
+          More
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <h4>OTHER MENU</h4>
+        <a href="#" class="nav-item">
+          <i class="icon-settings"></i>
+          Setting
+        </a>
+        <a href="#" class="nav-item">
+          <i class="icon-help"></i>
+          Help
+        </a>
+        <a href="#" class="nav-item">
+          <i class="icon-subscriptions"></i>
+          Subscriptions
+        </a>
+      </div>
+    </nav>
+  </aside>
+  
+  <main class="main-content">
+    <header class="dashboard-header">
+      <h1>Dashboard</h1>
+      <p>All general information appears in this field</p>
+    </header>
+    
+    <div class="dashboard-stats">
+      <div class="report-section">
+        <div class="chart-placeholder">
+          <div class="chart-circle"></div>
+        </div>
+        <div class="report-info">
+          <h2>December Report</h2>
+          <p>Retrieve December report, analyze key data for informed strategic decisions.</p>
+          <div class="report-actions">
+            <button class="btn-primary">Analyze This</button>
+            <button class="btn-secondary">Download</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="stat-cards">
+        <div class="stat-card">
+          <h3>December income</h3>
+          <div class="stat-value">${{ decemberIncome.toLocaleString() }}</div>
+          <div class="stat-tags">
+            <span class="tag"># Macbook m2</span>
+            <span class="tag"># iPhone 15</span>
+          </div>
+          <div class="stat-chart">
+            <div class="chart-bar"></div>
+            <span class="stat-change positive">↑ 18,24%</span>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <h3>December sales</h3>
+          <div class="stat-value">{{ (decemberSales/1000).toFixed(1) }}k</div>
+          <div class="stat-details">
+            <span>1,272 iPhone 15</span>
+            <span>675 Macbook</span>
+          </div>
+          <div class="stat-chart">
+            <div class="chart-bar"></div>
+            <span class="stat-change negative">↓ 9,18%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="products-section">
+      <div class="products-header">
+        <div class="tabs">
+          <button class="tab active">Published</button>
+          <button class="tab">Draft</button>
+        </div>
+        <button class="export-btn">Export Now</button>
+      </div>
+      
+      <div class="products-table-container">
+        <table class="products-table">
+          <thead>
+            <tr>
+              <th class="checkbox-column">
+                <input type="checkbox" class="checkbox">
+              </th>
+              <th class="product-name-column">PRODUCT NAME</th>
+              <th class="stock-column">FIRST STOCK</th>
+              <th class="sold-column">SOLD</th>
+              <th class="date-column">DATE ADDED</th>
+              <th class="pricing-column">PRICING</th>
+              <th class="rating-column">RATING</th>
+              <th class="action-column">ACTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products" class="product-row">
+              <td class="checkbox-column">
+                <input 
+                  type="checkbox" 
+                  class="checkbox" 
+                  [checked]="product.selected"
+                  (change)="toggleProductSelection(product)">
+              </td>
+              <td class="product-name-column">
+                <span class="product-name">{{ product.name }}</span>
+              </td>
+              <td class="stock-column">
+                <div class="stock-content">
+                  <span class="stock-icon">📦</span>
+                  <span class="stock-value">{{ product.firstStock.toLocaleString() }}</span>
+                  <span class="stock-arrow">→</span>
+                </div>
+              </td>
+              <td class="sold-column">
+                <div class="sold-content">
+                  <span class="sold-icon">🎯</span>
+                  <span class="sold-value">{{ product.sold.toLocaleString() }}</span>
+                </div>
+              </td>
+              <td class="date-column">
+                <span class="date-value">{{ product.dateAdded }}</span>
+              </td>
+              <td class="pricing-column">
+                <span class="pricing-value">${{ product.pricing.toLocaleString() }}</span>
+              </td>
+              <td class="rating-column">
+                <div class="rating-content">
+                  <span class="rating-star">⭐</span>
+                  <span class="rating-value">{{ product.rating }}</span>
+                </div>
+              </td>
+              <td class="action-column">
+                <div class="action-content">
+                  <button class="action-btn edit-btn" (click)="editProduct(product)">✏️</button>
+                  <button class="action-btn delete-btn" (click)="deleteProduct(product)">🗑️</button>
+                  <button class="action-btn more-btn">⋯</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="pagination">
+        <button class="pagination-btn">Prev</button>
+        <div class="pagination-numbers">
+          <button class="pagination-number active">1</button>
+          <button class="pagination-number">2</button>
+          <span class="pagination-dots">...</span>
+          <button class="pagination-number">8</button>
+          <button class="pagination-number">9</button>
+        </div>
+        <button class="pagination-btn">Next</button>
+        <div class="pagination-info">
+          <span>Showing 7 of 120 entries</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

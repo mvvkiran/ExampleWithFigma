@@ -7,7 +7,14 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ExampleWithFigma": "node dist/ExampleWithFigma/server/server.mjs"
+    "serve:ssr:ExampleWithFigma": "node dist/ExampleWithFigma/server/server.mjs",
+    "e2e": "./run-e2e-tests.sh",
+    "e2e:headless": "./run-e2e-tests.sh --headless",
+    "e2e:home": "./run-e2e-tests.sh --test e2e-tests/tests/home.test.ts",
+    "e2e:dashboard": "./run-e2e-tests.sh --test e2e-tests/tests/dashboard.test.ts",
+    "e2e:full": "./run-e2e-tests.sh --test e2e-tests/tests/full-regression.test.ts",
+    "e2e:report": "./generate-report.sh",
+    "e2e:view-report": "echo 'Report location: file://'$(pwd)'/e2e-tests/reports/html-report/report.html' && open 'file://'$(pwd)'/e2e-tests/reports/html-report/report.html' 2>/dev/null || echo 'Copy the file:// URL above into your browser'"
   },
   "prettier": {
     "overrides": [
@@ -29,6 +36,8 @@
     "@angular/platform-server": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.0",
+    "@types/compression": "^1.8.1",
+    "compression": "^1.8.1",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
@@ -39,13 +48,21 @@
     "@angular/compiler-cli": "^20.1.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20.17.19",
+    "@types/selenium-webdriver": "^4.1.28",
+    "allure-commandline": "^2.34.1",
+    "allure-js-commons": "^3.3.3",
+    "chromedriver": "^138.0.5",
     "jasmine-core": "~5.8.0",
+    "jest": "^30.0.5",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "selenium-webdriver": "^4.34.0",
+    "ts-jest": "^29.4.1",
     "typescript": "~5.8.2"
   }
 }

@@ -8,6 +8,10 @@
         "--figma-api-key=figd_x9-mCkclKaAVvoHJv9-TieZZq1CgZeuhzECwOW5C",
         "--stdio"
       ]
-    }
+    },
+    "serena": {
+            "command": "/abs/path/to/uvx",
+            "args": ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
+        }
   }
 }
